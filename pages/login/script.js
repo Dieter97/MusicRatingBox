@@ -6,7 +6,7 @@ var clientId = null;
 function loginUser(){
     //Save username
     username = $('#username-input')[0].value;
-    clientId = 'cli1entId_' + Math.random().toString(16).substr(2, 8);
+    clientId = guid();//'clientId_' + Math.random().toString(16).substr(2, 8);
     localStorage.setItem("username",username);
     localStorage.setItem("clientId",clientId);
     console.log('User now logged in\nUsername: '+username+'\nClientId: '+clientId);
@@ -56,5 +56,14 @@ $( document ).ready(function() {
     });
 });
 
+
+function guid() {
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+}
 
 

@@ -1,80 +1,39 @@
 var CACHE_NAME = 'music-rating-box-cache-v1';
 var urlsToCache = [
-    '/',
-    'login/login.html',
-    'login/script.js',
-    'css/bootstrap.css',
-    'css/bootstrap-grid.css',
-    'css/bootstrap-reboot.css',
-    'js/bootstrap.bundle.js',
-    'js/bootstrap.js'
+    './pages/login/login.html',
+    './pages/login/script.js',
+    './pages/voter/script.js',
+    './pages/voter/voter.html',
+    './css/bootstrap.css',
+    './css/bootstrap-grid.css',
+    './css/bootstrap-reboot.css',
+    './js/bootstrap.bundle.js',
+    './js/bootstrap.js'
 ];
 
-self.addEventListener('install', function(event) {
-    // Perform install steps
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(function(cache) {
-                console.log('Opened cache');
-                return cache.addAll(urlsToCache);
-            })
+// during the install phase you usually want to cache static assets
+self.addEventListener('install', function(e) {
+    // once the SW is installed, go ahead and fetch the resources to make this work offline
+    e.waitUntil(
+        caches.open(CACHE_NAME).then(function(cache) {
+            return cache.addAll(urlsToCache).then(function() {
+                self.skipWaiting();
+            });
+        })
     );
 });
 
+// when the browser fetches a url
 self.addEventListener('fetch', function(event) {
+    // either respond with the cached object or go ahead and fetch the actual url
     event.respondWith(
-        caches.match(event.request)
-            .then(function(response) {
-                // Cache hit - return response
-                if (response) {
-                    return response;
-                }
-
-                // IMPORTANT: Clone the request. A request is a stream and
-                // can only be consumed once. Since we are consuming this
-                // once by cache and once by the browser for fetch, we need
-                // to clone the response.
-                var fetchRequest = event.request.clone();
-
-                return fetch(fetchRequest).then(
-                    function(response) {
-                        // Check if we received a valid response
-                        if(!response || response.status !== 200 || response.type !== 'basic') {
-                            return response;
-                        }
-
-                        // IMPORTANT: Clone the response. A response is a stream
-                        // and because we want the browser to consume the response
-                        // as well as the cache consuming the response, we need
-                        // to clone it so we have two streams.
-                        var responseToCache = response.clone();
-
-                        caches.open(CACHE_NAME)
-                            .then(function(cache) {
-                                cache.put(event.request, responseToCache);
-                            });
-
-                        return response;
-                    }
-                );
-            })
-    );
-});
-
-
-self.addEventListener('activate', function(event) {
-
-    var cacheWhitelist = ['pages-cache-v1', 'blog-posts-cache-v1'];
-
-    event.waitUntil(
-        caches.keys().then(function(cacheNames) {
-            return Promise.all(
-                cacheNames.map(function(cacheName) {
-                    if (cacheWhitelist.indexOf(cacheName) === -1) {
-                        return caches.delete(cacheName);
-                    }
-                })
-            );
+        caches.match(event.request).then(function(response) {
+            if (response) {
+                // retrieve from cache
+                return response;
+            }
+            // fetch as normal
+            return fetch(event.request);
         })
     );
 });
