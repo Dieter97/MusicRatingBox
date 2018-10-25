@@ -49,7 +49,7 @@ function onFailure(invocationContext){
 // called when the client connects
 function onConnect() {
     // Once a connection has been made, make a subscription and send a message.
-    console.log("onConnect");
+    console.log("Connected, subscribing on music topic...");
     client.subscribe("music");
     document.getElementById("connecting-overlay").classList.add("hidden");
     $("#errorModal").modal("hide");
@@ -104,9 +104,14 @@ function onMessageArrived(message) {
             document.getElementById("song-title-view").innerText = musicObject.title;
             document.getElementById("song-artist-view").innerText = musicObject.artist;
             //Find album art
-            albumArt( musicObject.artist ).then( function(link){
+            albumArt( musicObject.artist, {album: musicObject.title, size: 'small'},(error, link) =>{
                 console.log(link);
-                document.getElementById('album-art-view').setAttribute('src',link);
+                //check if the result is a valid url
+                if(typeof link === 'string'){
+                    document.getElementById('album-art-view').setAttribute('src',link);
+                }else{
+                    document.getElementById('album-art-view').setAttribute('src','../../img/icon2-512.png');
+                }
             });
             //TODO: handle error in link
 
@@ -117,7 +122,5 @@ function onMessageArrived(message) {
         }catch(e){
             console.log("Error parsing music data: "+e.stack);
         }
-
     }
-
 }
