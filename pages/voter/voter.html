@@ -21,6 +21,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
+
+    <script type="text/javascript" src="https://unpkg.com/album-art"></script>
     <script src="script.js"></script>
     <script src="../../js/service-installer.js"></script>
 
@@ -37,7 +39,7 @@
 <div id="wrapper">
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
-            <img  src="../../img/icons-512.png" style="width: 80px; margin: 5px 5px 5px 15px"><span style="color: white;font-size: 1.1em;">Music Rating Box</span>
+            <img src="../../img/icon2-512-w.png" style="width: 80px; margin: 5px 5px 5px 15px"><span style="color: white;font-size: 1.1em;">Music Rating Box</span>
             <li class="sidebar-brand">
                 <a href="#">
                     Ingelogged als:
@@ -62,7 +64,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Now playing...</h5>
                     <div class="media">
-                        <img class="mr-3" src="https://picsum.photos/64x64" alt="Generic placeholder image">
+                        <img id="album-art-view" class="mr-3" src="https://picsum.photos/64x64" width="64px" height="64px" alt="Generic placeholder image">
                         <div class="media-body">
                             <h6 id="song-title-view" class="mt-0">Song Title</h6>
                             <p id="song-artist-view">Artist name</p>
@@ -88,7 +90,7 @@
 
     <div id="voted-overlay" class="hidden" onclick="event.stopPropagation();">
         <div class="overlay-content">
-            <h3>Bedankt voor je stem! Wacht even tot het volgende lied start om opnieuw te stemmen...</h3>
+            <h4>Bedankt voor je stem! Wacht even tot het volgende lied start om opnieuw te stemmen...</h4>
             <div class="lds-circle"></div>
         </div>
     </div>

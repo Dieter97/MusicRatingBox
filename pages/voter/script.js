@@ -20,17 +20,16 @@ $( document ).ready(function() {
     }
     //Fill sidebar fields on load
     document.getElementById("username").innerText = username;
-    document.getElementById("clientId-debug").innerHTML = clientId;
+    //document.getElementById("clientId-debug").innerHTML = clientId;
 
     connect();
-
 });
 
 function connect(){
     document.getElementById("connecting-overlay").classList.remove("hidden");
     //Start and check connection with MQTT borker
     // Create a client instance
-    client = new Paho.MQTT.Client('broker.mqttdashboard.com', 8000, clientId); //ws://143.129.39.126broker.mqttdashboard.com
+    client = new Paho.MQTT.Client('143.129.39.126', 8083, clientId); // 143.129.39.126  broker.mqttdashboard.com
 
     // set callback handlers
     client.onConnectionLost = onConnectionLost;
@@ -87,7 +86,7 @@ function sendVote(value){
     message.destinationName = "votes"; //Send to votes topic
     message.qos= 1; //QoS type 1 : at least once
     client.send(message);
-
+    console.log('Vote send: '+JSON.stringify(vote));
     //Show voted screen
     document.getElementById("voted-overlay").classList.remove("hidden");
 }
@@ -102,6 +101,12 @@ function onMessageArrived(message) {
             var musicObject = JSON.parse(message.payloadString);
             document.getElementById("song-title-view").innerText = musicObject.title;
             document.getElementById("song-artist-view").innerText = musicObject.artist;
+            //Find album art
+            albumArt( musicObject.artist ).then( function(link){
+                console.log(link);
+                document.getElementById('album-art-view').setAttribute('src',link);
+            });
+
             currentSong = musicObject;
 
             //Show voted screen
