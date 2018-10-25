@@ -20,6 +20,7 @@ $( document ).ready(function() {
         deferredPrompt = e;
         // Update UI notify the user they can add to home screen
         document.getElementById("installBtn").display = 'block';
+        e.prompt();
     });
 
     document.getElementById("installBtn").addEventListener('click', (e) => {
