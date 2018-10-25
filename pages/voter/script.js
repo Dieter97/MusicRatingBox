@@ -75,9 +75,6 @@ function sendVote(value){
         return;
     }
 
-    var test = Date('2018-10-18T14:28:53Z');
-    var test2 = Date("2017-10-18T14:28:53Z");
-
     var event = new Date(); // Get current timestamp
     var vote = {"timestamp": event.toISOString(),
                 "value": value,
@@ -113,7 +110,6 @@ function onMessageArrived(message) {
                     document.getElementById('album-art-view').setAttribute('src','../../img/icon2-512.png');
                 }
             });
-            //TODO: handle error in link
 
             currentSong = musicObject;
 

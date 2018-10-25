@@ -4,13 +4,22 @@ var urlsToCache = [
     './pages/login/script.js',
     './pages/voter/script.js',
     './pages/voter/voter.html',
+    './pages/voter/style.css',
+    './css/color.css',
+    './css/simple-sidebar.css',
     './css/bootstrap.css',
     './css/bootstrap-grid.css',
     './css/bootstrap-reboot.css',
     './js/bootstrap.bundle.js',
-    './js/bootstrap.js'
+    './js/bootstrap.js',
+    './img/icon2-192.png',
+    './img/icon2-512.png',
+    './img/icon2-512-w.png',
+    './img/thumb.svg',
+    './js/service-installer.js',
+    './index.html'
 ];
-//TODO: add cache files
+
 // during the install phase you usually want to cache static assets
 self.addEventListener('install', function(e) {
     // once the SW is installed, go ahead and fetch the resources to make this work offline
