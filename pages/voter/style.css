@@ -1,5 +1,22 @@
 
 /* VOTE BUTTONS */
+.vote-btn{
+    width: 120px;
+    height: 120px;
+}
+
 .vote-btn:hover{
     opacity: 0.5;
+}
+
+
+#error-overlay{
+    height: 100vh;
+    width: auto;
+    background-color: #dbdbdb;
+}
+
+
+.hidden{
+    display: none;
 }

@@ -36,8 +36,8 @@
 
 <div id="wrapper">
     <div id="sidebar-wrapper">
-        <img  src="../../img/icons-512.png" style="width: 80px; margin: 5px 5px 5px 15px"><span style="color: white;font-size: 1.1em;">Music Rating Box</span>
         <ul class="sidebar-nav">
+            <img  src="../../img/icons-512.png" style="width: 80px; margin: 5px 5px 5px 15px"><span style="color: white;font-size: 1.1em;">Music Rating Box</span>
             <li class="sidebar-brand">
                 <a href="#">
                     Ingelogged als:
@@ -64,8 +64,8 @@
                     <div class="media">
                         <img class="mr-3" src="https://picsum.photos/64x64" alt="Generic placeholder image">
                         <div class="media-body">
-                            <h6 class="mt-0">Song Title</h6>
-                            <p>Artist name</p>
+                            <h6 id="song-title-view" class="mt-0">Song Title</h6>
+                            <p id="song-artist-view">Artist name</p>
                         </div>
                     </div>
                 </div>
@@ -74,16 +74,23 @@
             <div class="row m-5">
                 <div class="col-sm text-center">
                     <div class="border-light">
-                        <img class="mb-4 vote-btn" src="../../img/thumb.svg" alt="" width="100" height="100">
+                        <img class="mb-4 vote-btn" src="../../img/thumb.svg" alt="Upvote" onclick="sendVote(1);" >
                     </div>
                 </div>
                 <div class="col-sm text-center">
                     <div class="border-light">
-                        <img class="mb-4 vote-btn" src="../../img/thumb.svg" style="transform: scaleY(-1);" alt="" width="100" height="100">
+                        <img class="mb-4 vote-btn" src="../../img/thumb.svg" style="transform: scaleY(-1);" alt="Downvote" onclick="sendVote(-1);" >
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
+    <div id="error-overlay" class="hidden">
+        <div class="card bg-danger">
+            <div class="card-body text-center">
+                <p class="card-text">Not connected...</p>
+            </div>
         </div>
     </div>
 
