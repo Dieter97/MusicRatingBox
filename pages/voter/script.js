@@ -106,6 +106,7 @@ function onMessageArrived(message) {
                 console.log(link);
                 document.getElementById('album-art-view').setAttribute('src',link);
             });
+            //TODO: handle error in link
 
             currentSong = musicObject;
 
