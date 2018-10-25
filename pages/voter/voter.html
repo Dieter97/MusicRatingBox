@@ -86,10 +86,36 @@
         </div>
     </div>
 
-    <div id="error-overlay" class="hidden">
+    <div id="voted-overlay" class="hidden" onclick="event.stopPropagation();">
+        <div class="overlay-content">
+            <h3>Bedankt voor je stem! Wacht even tot het volgende lied start om opnieuw te stemmen...</h3>
+            <div class="lds-circle"></div>
+        </div>
+    </div>
+
+    <div id="connecting-overlay" class="hidden" onclick="event.stopPropagation();">
         <div class="card bg-danger">
             <div class="card-body text-center">
-                <p class="card-text">Not connected...</p>
+                <div class="lds-circle"></div>
+                <p class="card-text">Connecting...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="errorModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Error</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Connection error...
+                </div>
             </div>
         </div>
     </div>
