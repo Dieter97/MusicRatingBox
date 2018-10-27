@@ -101,7 +101,7 @@ function onMessageArrived(message) {
             document.getElementById("song-title-view").innerText = musicObject.title;
             document.getElementById("song-artist-view").innerText = musicObject.artist;
             //Find album art
-            albumArt( musicObject.artist, {album: musicObject.title, size: 'small'},(error, link) =>{
+            albumArt( musicObject.artist, {album: musicObject.title, size: 'large'},(error, link) =>{
                 console.log(link);
                 //check if the result is a valid url
                 if(typeof link === 'string'){
