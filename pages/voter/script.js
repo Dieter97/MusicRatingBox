@@ -29,7 +29,7 @@ function connect(){
     document.getElementById("connecting-overlay").classList.remove("hidden");
     //Start and check connection with MQTT borker
     // Create a client instance
-    client = new Paho.MQTT.Client('iot.eclipse.org', 443, clientId); // Live: club-iot.tk:8083  Test: iot.eclipse.org:443
+    client = new Paho.MQTT.Client('club-iot.tk', 8083, clientId); // Live: club-iot.tk:8083  Test: iot.eclipse.org:443
 
     // set callback handlers
     client.onConnectionLost = onConnectionLost;
