@@ -1,4 +1,13 @@
 
+/* MUSIC ELEMENTS */
+
+#song-year-view{
+    opacity: 0.5;
+    font-size: 0.8em;
+    display: block;
+    margin-top: -10px;
+}
+
 /* VOTE BUTTONS */
 .vote-btn{
     width: 120px;

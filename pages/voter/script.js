@@ -29,7 +29,7 @@ function connect(){
     document.getElementById("connecting-overlay").classList.remove("hidden");
     //Start and check connection with MQTT borker
     // Create a client instance
-    client = new Paho.MQTT.Client('club-iot.tk', 8083, clientId); // Live: club-iot.tk:8083  Test: iot.eclipse.org:443
+    client = new Paho.MQTT.Client('iot.eclipse.org', 443, clientId); // Live: club-iot.tk:8083  Test: iot.eclipse.org:443
 
     // set callback handlers
     client.onConnectionLost = onConnectionLost;
@@ -100,6 +100,7 @@ function onMessageArrived(message) {
             var musicObject = JSON.parse(message.payloadString);
             document.getElementById("song-title-view").innerText = musicObject.title;
             document.getElementById("song-artist-view").innerText = musicObject.artist;
+            document.getElementById("song-year-view").innerText = musicObject.year;
             //Find album art
             albumArt( musicObject.artist, {album: musicObject.title, size: 'large'},(error, link) =>{
                 console.log(link);
