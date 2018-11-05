@@ -43,7 +43,10 @@ function onFailure(invocationContext){
     console.log("Error connection:\nCode="+invocationContext.errorCode+"\nMessage="+invocationContext.errorMessage);
     $("#errorModal").modal("show"); //Show error message
     //Try again
-    connect();
+    setTimeout(function () {
+        connect();
+    }, 5000);
+
 }
 
 // called when the client connects
@@ -61,7 +64,9 @@ function onConnectionLost(responseObject) {
         console.log("onConnectionLost:"+responseObject.errorMessage);
         $("#errorModal").modal("show");
         //Reconnect
-        connect();
+        setTimeout(function () {
+            connect();
+        }, 5000);
     }
 }
 
