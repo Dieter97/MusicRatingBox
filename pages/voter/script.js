@@ -81,6 +81,7 @@ function sendVote(value){
     }
 
     var event = new Date(); // Get current timestamp
+    event.setHours(event.getHours() + (event.getTimezoneOffset() / -60)); //Set iso string to return current time zone time
     var vote = {"timestamp": event.toISOString(),
                 "value": value,
                 "username": username,
