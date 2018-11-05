@@ -105,7 +105,11 @@ function onMessageArrived(message) {
             var musicObject = JSON.parse(message.payloadString);
             document.getElementById("song-title-view").innerText = musicObject.title;
             document.getElementById("song-artist-view").innerText = musicObject.artist;
-            document.getElementById("song-year-view").innerText = musicObject.year;
+            if(musicObject.year !== "0"){
+                document.getElementById("song-year-view").innerText = musicObject.year;
+            }else{
+                document.getElementById("song-year-view").innerText = "";
+            }
             //Find album art
             albumArt( musicObject.artist, {album: musicObject.title, size: 'large'},(error, link) =>{
                 console.log(link);
