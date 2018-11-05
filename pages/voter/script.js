@@ -105,7 +105,7 @@ function onMessageArrived(message) {
             var musicObject = JSON.parse(message.payloadString);
             document.getElementById("song-title-view").innerText = musicObject.title;
             document.getElementById("song-artist-view").innerText = musicObject.artist;
-            if(musicObject.year !== "0"){
+            if(musicObject.year !== 0 || musicObject.year !== '0'){
                 document.getElementById("song-year-view").innerText = musicObject.year;
             }else{
                 document.getElementById("song-year-view").innerText = "";
