@@ -29,20 +29,21 @@ function connect(){
     document.getElementById("connecting-overlay").classList.remove("hidden");
     //Start and check connection with MQTT borker
     // Create a client instance
-    client = new Paho.MQTT.Client('club-iot.tk', 8083, clientId); // 143.129.39.126  broker.mqttdashboard.com
+    client = new Paho.MQTT.Client('club-iot.tk', 8083, clientId); // Live: club-iot.tk:8083  Test: iot.eclipse.org:443
 
     // set callback handlers
     client.onConnectionLost = onConnectionLost;
     client.onMessageArrived = onMessageArrived;
 
     client.connect({onSuccess:onConnect,onFailure: onFailure,userName: 'club_app' ,password: 'xn5hb3zu',useSSL : true});
+
 }
 
 function onFailure(invocationContext){
     console.log("Error connection:\nCode="+invocationContext.errorCode+"\nMessage="+invocationContext.errorMessage);
     $("#errorModal").modal("show"); //Show error message
     //Try again
-    //connect();
+    connect();
 }
 
 // called when the client connects
