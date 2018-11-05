@@ -49,7 +49,7 @@ function onFailure(invocationContext){
 // called when the client connects
 function onConnect() {
     // Once a connection has been made, make a subscription and send a message.
-    console.log("Connected, subscribing on music topic...");
+    console.log("Connected, subscribing to music topic...");
     client.subscribe("music");
     document.getElementById("connecting-overlay").classList.add("hidden");
     $("#errorModal").modal("hide");
